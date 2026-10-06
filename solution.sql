@@ -1,1 +1,31 @@
+CREATE DATABASE KOKILAN;
+USE KOKILAN;
+SET SERVEROUTPUT ON;
+CREATE TABLE Student (
+StudentID NUMBER PRIMARY KEY,
+StudentName VARCHAR2(30),
+DepartmentID NUMBER
+);
 
+CREATE OR REPLACE PROCEDURE InsertStudent (
+P_ID NUMBER,
+P_Name VARCHAR2,
+P_DepartmentID NUMBER
+)
+IS
+BEGIN
+INSERT INTO Student
+VALUES (P_ID, P_Name, P_DepartmentID);
+
+COMMIT;
+
+DBMS_OUTPUT.PUT_LINE('Student inserted successfully');
+END;
+/
+
+BEGIN
+InsertStudent(1001, 'Arun', 101);
+END;
+/
+
+SELECT * FROM Student;
